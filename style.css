@@ -69,6 +69,7 @@ body {
     font-family: Arial, sans-serif;
     color: #E5EFEF;
     display: flexbox;
+    cursor: none;
 }
 
 .text-container {
@@ -78,18 +79,18 @@ body {
     flex-direction: column;   /* Makes children (content) stack vertically */
     align-items: center;     /* Centers children horizontally */
     justify-content: center; /* Centers children vertically */
-    height: 100vh;           /* Takes up the full height of the viewport */
     position: relative;
     z-index: 3;
+    margin: 20px 0;
+    padding: 20px;
 }
 
 /* ALL THE MOON STUFF */
 .moon-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px; /* Some padding around the moon and text */
+    margin: 50px;
 }
 
 .moon {
@@ -120,21 +121,20 @@ body {
 
 #percentage {
     margin-top: 10px;
-    color: white;
 }
 
 /* TEXT */
 h1, h2, p {
     text-align: center;
-    color: orchid;
 }
 
 h1 {
     font-size: 60px;
     font-family: "Helvetica", serif;
-    font-weight: 700;
-    font-style: italic;
+    font-weight: 70;
+    font-style: normal;
     padding-top: 15%;
+    padding-bottom: 5%;
 }
 
 h2{
@@ -146,7 +146,7 @@ h2{
 
 p{
     font-family: "Helvetica", serif;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 27px;
     font-style: normal;
     padding: 30px;
