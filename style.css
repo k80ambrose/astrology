@@ -1,0 +1,140 @@
+@keyframes move-background {
+    from {
+        transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+        transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.stars {
+    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.twinkling {
+    width: 10000px;
+    height: 100%;
+    background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+    background-size: 1000px 1000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    animation: move-background 70s linear infinite;
+}
+
+.clouds {
+    width: 150%;
+    height: 150%;
+    background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/clouds_repeat.png") repeat;
+    background-size: 2000px 2000px; /* Increased size to show less clouds */
+    position: absolute;
+    right: 0;
+    top: -10%;
+    left: -10%;
+    bottom: 0;
+    z-index: 1;
+    /* animation: move-background 150s linear infinite; */
+    transform-origin: center center; /* Setting the origin for transformations */
+    transition: transform 0.75s ease-out; /* Adjusted duration and timing function */
+    transform: translate(0, 0);
+
+}
+
+img {
+    height: 70vh;
+    width: 70vh;
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #E5EFEF;
+}
+
+.container {
+    position: relative;
+    z-index: 3;
+    display: flex;            /* Enables Flexbox */
+    flex-direction: column;   /* Makes children (content) stack vertically */
+    align-items: center;     /* Centers children horizontally */
+    justify-content: center; /* Centers children vertically */
+    height: 100vh;           /* Takes up the full height of the viewport */
+    position: relative;
+    z-index: 3;
+}
+
+.moon-container {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.moon, .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.moon {
+    background-color: white;
+    z-index: 1;
+}
+
+.shadow {
+    background-color: black;
+    right: 0;
+    z-index: 2;
+}
+
+/* TEXT */
+h1, h2, p {
+    text-align: center;
+}
+
+h1 {
+    font-size: 60px;
+    font-family: "monarcha", serif;
+    font-weight: 700;
+    font-style: italic;
+    padding-top: 300px;
+}
+
+h2{
+    font-size: 40px;
+    font-family: "monarcha", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+p{
+    font-family: "monarcha", serif;
+    font-weight: 200;
+    font-size: 27px;
+    font-style: normal;
+}
+.moon, .planets {
+    list-style-type: none;
+    padding: 0;
+}
