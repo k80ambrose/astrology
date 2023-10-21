@@ -85,6 +85,13 @@ body {
     padding: 20px;
 }
 
+.about-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    margin-bottom: 100px;  
+}
+
 /* ALL THE MOON STUFF */
 .moon-container {
     display: flex;
@@ -150,4 +157,23 @@ h3 {
     font-size: 27px;
     font-style: normal;
     padding: 30px;
+}
+
+p {
+    font-family: "Helvetica", serif;
+    font-weight: 200;
+    font-size: 18px;
+    font-style: normal;
+}
+
+div.about-section #about-heading {
+    font-size: 30px;
+    font-family: "Helvetica", serif;
+    font-weight: 100;
+    font-style: italic;
+    transition: font-weight 0.5s ease;
+}
+
+div.about-section #about-heading:hover {
+    font-weight: 800;
 }
