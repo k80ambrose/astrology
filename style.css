@@ -67,7 +67,6 @@ img {
 
 body {
     font-family: Arial, sans-serif;
-    color: #E5EFEF;
     display: flexbox;
     cursor: none;
 }
@@ -90,6 +89,10 @@ body {
     overflow: hidden;
     transition: max-height 0.5s ease-out;
     margin-bottom: 100px;  
+    max-width: 50%;
+    margin: 0 auto; /* centers the container on the page */
+    padding: 20px;
+    text-align: left;
 }
 
 /* ALL THE MOON STUFF */
@@ -131,7 +134,7 @@ body {
 }
 
 /* TEXT */
-h1, h2, h3, p {
+h1, h2, h3, {
     text-align: center;
 }
 
@@ -142,6 +145,7 @@ h1 {
     font-style: normal;
     padding-top: 15%;
     padding-bottom: 5%;
+    text-align: center;
 }
 
 h2 {
@@ -164,14 +168,20 @@ p {
     font-weight: 200;
     font-size: 18px;
     font-style: normal;
+    line-height: 1.5;
 }
 
+a {
+    color: inherit;
+}
 div.about-section #about-heading {
-    font-size: 30px;
+    font-size: 24px;
     font-family: "Helvetica", serif;
     font-weight: 100;
     font-style: italic;
+    margin: 15px;
     transition: font-weight 0.5s ease;
+    text-align: center;
 }
 
 div.about-section #about-heading:hover {
