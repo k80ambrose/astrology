@@ -49,7 +49,7 @@
     top: -10%;
     left: -10%;
     bottom: 0;
-    z-index: 1;
+    z-index: 4;
     /* animation: move-background 150s linear infinite; */
     transform-origin: center center; /* Setting the origin for transformations */
     transition: transform 0.75s ease-out; /* Adjusted duration and timing function */
@@ -71,7 +71,7 @@ body {
     display: flexbox;
 }
 
-.container {
+.text-container {
     position: relative;
     z-index: 3;
     display: flex;            /* Enables Flexbox */
@@ -126,6 +126,7 @@ body {
 /* TEXT */
 h1, h2, p {
     text-align: center;
+    color: orchid;
 }
 
 h1 {
@@ -133,7 +134,7 @@ h1 {
     font-family: "Helvetica", serif;
     font-weight: 700;
     font-style: italic;
-    padding-top: 300px;
+    padding-top: 15%;
 }
 
 h2{
@@ -148,4 +149,5 @@ p{
     font-weight: 200;
     font-size: 27px;
     font-style: normal;
+    padding: 30px;
 }
