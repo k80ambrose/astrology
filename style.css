@@ -124,7 +124,7 @@ body {
 }
 
 /* TEXT */
-h1, h2, p {
+h1, h2, h3, p {
     text-align: center;
 }
 
@@ -137,16 +137,16 @@ h1 {
     padding-bottom: 5%;
 }
 
-h2{
+h2 {
     font-size: 40px;
     font-family: "Helvetica", serif;
-    font-weight: 600;
+    font-weight: 100;
     font-style: normal;
 }
 
-p{
+h3 {
     font-family: "Helvetica", serif;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 27px;
     font-style: normal;
     padding: 30px;
