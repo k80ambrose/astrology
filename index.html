@@ -14,18 +14,20 @@
         <div class="twinkling"></div>
         <div class="clouds"></div>    
     </div>
-    <div class="moon-container">
-        <div class="moon"></div>
-        <div class="shadow"></div>
-    </div>
-    <input type="range" id="moonPhase" min="0" max="100" value="50">
-    <span id="percentage">50%</span>
     
     <h1>Today is [insert variable]</h1>
-            <p>The moon is [insert variable] full</p>
-            <p>It has been days since the last [full/new] moon</p>
+
+    <div class="moon-container">
+        <div class="moon">
+            <div class="shadow left"></div>
+            <div class="shadow right"></div>
+        </div>
+        <div id="percentage"></div>
+    </div>
 
     <div class="container">
+        <p>The moon is [insert variable] full</p>
+        <p>It has been days since the last [full/new] moon</p>
         <h2>Planetary Placements</h2>
         <ul class="planets">
             <p>The Sun is [insert variable]° in [insert variable]</p>
