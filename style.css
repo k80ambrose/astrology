@@ -68,7 +68,7 @@ img {
 body {
     font-family: Arial, sans-serif;
     display: flexbox;
-    cursor: none;
+    /* cursor: none; */
 }
 
 .text-container {
@@ -174,7 +174,7 @@ p {
 a {
     color: inherit;
 }
-div.about-section #about-heading {
+div.about-section .about-heading {
     font-size: 24px;
     font-family: "Helvetica", serif;
     font-weight: 100;
@@ -184,6 +184,6 @@ div.about-section #about-heading {
     text-align: center;
 }
 
-div.about-section #about-heading:hover {
+div.about-section .about-heading:hover {
     font-weight: 800;
 }
