@@ -43,13 +43,13 @@
     width: 150%;
     height: 150%;
     background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/clouds_repeat.png") repeat;
-    background-size: 2000px 2000px; /* Increased size to show less clouds */
+    background-size: 1800px 1800px; /* Increased size to show less clouds */
     position: absolute;
     right: 0;
     top: -10%;
     left: -10%;
     bottom: 0;
-    z-index: 4;
+    z-index: 5;
     /* animation: move-background 150s linear infinite; */
     transform-origin: center center; /* Setting the origin for transformations */
     transition: transform 0.75s ease-out; /* Adjusted duration and timing function */
@@ -61,19 +61,19 @@ img {
     height: 70vh;
     width: 70vh;
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     right: 20px;
 }
 
 body {
     font-family: Arial, sans-serif;
     display: flexbox;
-    /* cursor: none; */
+    cursor: grab;
 }
 
 .text-container {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     display: flex;            /* Enables Flexbox */
     flex-direction: column;   /* Makes children (content) stack vertically */
     align-items: center;     /* Centers children horizontally */
@@ -136,16 +136,17 @@ body {
 /* TEXT */
 h1, h2, h3, {
     text-align: center;
+    z-index: 1;
 }
 
 h1 {
     font-size: 60px;
     font-family: "Helvetica", serif;
-    font-weight: 70;
-    font-style: normal;
+    font-weight: 10;
     padding-top: 15%;
     padding-bottom: 5%;
     text-align: center;
+    letter-spacing: -2.5px;
 }
 
 h2 {
