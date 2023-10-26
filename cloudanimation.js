@@ -7,7 +7,7 @@ document.addEventListener('mousemove', function(event) {
     const deltaY = (event.clientY - centerY) / centerY;
 
     // Translate the clouds based on the mouse position
-    const translationX = deltaX * 25; // 10 is a multiplier, adjust for more/less movement
+    const translationX = deltaX * 25; // adjust for more/less movement
     const translationY = deltaY * 10;
 
     const clouds = document.querySelector('.clouds');

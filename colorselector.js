@@ -1,4 +1,4 @@
- // Array of your colors
+ // Array of colors
  const colors = [
     "#FBF8CC",
     "#FDE4CF",
