@@ -28,13 +28,13 @@ function displayTime() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
     
-    document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
+    document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
 }
 
 // Call the function immediately to display the time
 displayTime();
 
-// Set an interval to call the function every second
-setInterval(displayTime, 1000);
+// Set an interval to call the function every minute
+setInterval(displayTime, 60000);
+
