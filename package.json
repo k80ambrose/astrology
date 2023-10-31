@@ -1,0 +1,24 @@
+{
+  "name": "astrology",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k80ambrose/digitalfolk.git"
+  },
+  "author": "k80",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k80ambrose/digitalfolk/issues"
+  },
+  "homepage": "https://github.com/k80ambrose/digitalfolk#readme",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2"
+  }
+}
