@@ -74,15 +74,13 @@ body {
 .text-container {
     position: relative;
     z-index: 2;
-    display: flex;            /* Enables Flexbox */
-    flex-direction: column;   /* Makes children (content) stack vertically */
-    align-items: center;     /* Centers children horizontally */
-    justify-content: center; /* Centers children vertically */
+    display: flex;
+    flex-direction: column;   
+    align-items: center; 
+    justify-content: center; 
     position: relative;
     z-index: 1;
-    margin: 2px 0;
     padding-bottom: 100px;
-    user-select: none;
 }
 
 .about-content {
@@ -109,7 +107,6 @@ h1 {
     font-family: "Helvetica", serif;
     font-weight: 10;
     padding-top: 5%;
-    padding-bottom: 2%;
     text-align: center;
     letter-spacing: -2.5px;
     line-height: 1.5;
@@ -126,7 +123,7 @@ h2 {
 h3 {
     font-family: "Helvetica", serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 21px;
     font-style: normal;
     line-height: 0.5;
 }
@@ -137,10 +134,14 @@ p {
     font-size: 18px;
     font-style: normal;
     line-height: 1.5;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 a {
     color: inherit;
+    cursor: pointer;
 }
 div.about-section .about-heading {
     font-size: 24px;
