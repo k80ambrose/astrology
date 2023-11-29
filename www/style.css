@@ -69,7 +69,6 @@ body {
     font-family: Arial, sans-serif;
     display: flexbox;
     cursor: grab;
-    user-select: none;
 }
 
 .text-container {
@@ -80,9 +79,10 @@ body {
     align-items: center;     /* Centers children horizontally */
     justify-content: center; /* Centers children vertically */
     position: relative;
-    z-index: 3;
-    margin: 20px 0;
-    padding: 20px;
+    z-index: 1;
+    margin: 2px 0;
+    padding-bottom: 100px;
+    user-select: none;
 }
 
 .about-content {
@@ -92,77 +92,43 @@ body {
     margin-bottom: 100px;  
     max-width: 50%;
     margin: 0 auto; /* centers the container on the page */
-    padding: 20px;
+    padding-top: 2px;
     text-align: left;
 }
-
-/* ALL THE MOON STUFF */
-.moon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px;
-}
-
-.moon {
-    width: 300px;  /* Adjust for the desired size */
-    height: 300px; /* Adjust for the desired size */
-    background-color: black;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-}
-
-.shadow {
-    position: absolute;
-    height: 100%;
-    background-color: white;
-    transition: all 0.3s ease-in-out; /* For smoother transitions between moon phases */
-}
-
-.shadow.left {
-    left: 0;
-    width: 50%;
-}
-
-.shadow.right {
-    right: 0;
-    width: 50%;
-}
-
-#percentage {
-    margin-top: 10px;
-}
-
 /* TEXT */
 h1, h2, h3 {
     text-align: center;
     z-index: 1;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 h1 {
     font-size: 60px;
     font-family: "Helvetica", serif;
     font-weight: 10;
-    padding-top: 15%;
-    padding-bottom: 5%;
+    padding-top: 5%;
+    padding-bottom: 2%;
     text-align: center;
     letter-spacing: -2.5px;
+    line-height: 1.5;
+    user-select: none;
 }
 
 h2 {
-    font-size: 40px;
+    font-size: 30px;
     font-family: "Helvetica", serif;
-    font-weight: 100;
+    font-weight: 600;
     font-style: normal;
 }
-
+/* body text basically */
 h3 {
     font-family: "Helvetica", serif;
     font-weight: 600;
-    font-size: 27px;
+    font-size: 20px;
     font-style: normal;
-    padding: 30px;
+    line-height: 0.5;
 }
 
 p {
