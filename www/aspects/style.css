@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+}
+
+#circleContainer {
+    position: relative;
+    width: 390px; /* Increased from 300px */
+    height: 390px; /* Increased from 300px */
+    border: 2px solid whitesmoke;
+    border-radius: 50%;
+}
+
+.centerPoint {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.aspectDots {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: grey;
+    border-radius: 50%;
+    /* Positioning the dot at 0 degrees for now */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg) translate(195px) rotate(-0deg);
+    /* We will add a rotation for each dot to position it correctly */
+}
+
+/* Position each dot */
+#dot1 { transform: translate(-50%, -50%) rotate(0deg) translate(195px) rotate(-0deg); }
+#dot2 { transform: translate(-50%, -50%) rotate(30deg) translate(195px) rotate(-30deg); }
+/* Add the correct transform for dots 3 through 12 */
+#dot3 { transform: translate(-50%, -50%) rotate(60deg) translate(195px) rotate(-60deg); }
+#dot4 { transform: translate(-50%, -50%) rotate(90deg) translate(195px) rotate(-90deg); }
+#dot5 { transform: translate(-50%, -50%) rotate(120deg) translate(195px) rotate(-120deg); }
+#dot6 { transform: translate(-50%, -50%) rotate(150deg) translate(195px) rotate(-150deg); }
+#dot7 { transform: translate(-50%, -50%) rotate(180deg) translate(195px) rotate(-180deg); }
+#dot8 { transform: translate(-50%, -50%) rotate(210deg) translate(195px) rotate(-210deg); }
+#dot9 { transform: translate(-50%, -50%) rotate(240deg) translate(195px) rotate(-240deg); }
+#dot10 { transform: translate(-50%, -50%) rotate(270deg) translate(195px) rotate(-270deg); }
+#dot11 { transform: translate(-50%, -50%) rotate(300deg) translate(195px) rotate(-300deg); }
+#dot12 { transform: translate(-50%, -50%) rotate(330deg) translate(195px) rotate(-330deg); }
+
