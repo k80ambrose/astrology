@@ -1,5 +1,6 @@
 // Calculate interior angle
 function calculateAngle(dot1, dot2) {
+  
   // Get the positions of the dots relative to the center
   const x1 = parseFloat(dot1.style.left) + dot1.offsetWidth / 2;
   const y1 = parseFloat(dot1.style.top) + dot1.offsetHeight / 2;
@@ -25,6 +26,7 @@ function calculateAngle(dot1, dot2) {
 
   return angleDegrees;
 }
+
 // determine the aspect name based on the angle
 function getAspectName(angle) {
   const aspects = [
@@ -48,6 +50,7 @@ function getAspectName(angle) {
       return null; // No significant aspect found
   }
 }
+
 // display the aspect information
 function displayAspectInfo(aspect) {
   const aspectInfoDiv = document.getElementById('aspectInfo');
@@ -76,6 +79,7 @@ function updateDotSelection(dot) {
       displayAspectInfo(aspect);
   }
 }
+
 // draw lines to the center
 function drawLines() {
   const svg = document.querySelector('#circleContainer svg');
@@ -89,6 +93,7 @@ function drawLines() {
     drawLine(secondSelectedDot, svg);
   }
 }
+
 // draw a line from a dot to the center
 function drawLine(dot, svg) {
   const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -107,16 +112,71 @@ function drawLine(dot, svg) {
 }
 // Select all the dots and the center point
 const dots = document.querySelectorAll('.aspectDots');
-const centerPoint = document.getElementById('centerPoint');
+const centerPoint = document.getElementById('centerPoint')
+
 // Variables to keep track of the selected dots
 let firstSelectedDot = null;
 let secondSelectedDot = null;
+let isDragging = false;
+
+function moveDot(event, dot) {
+  const circleContainer = document.getElementById('circleContainer');
+  const rect = circleContainer.getBoundingClientRect();
+  const radius = rect.width / 2;
+  const centerX = rect.left + radius - window.scrollX;
+  const centerY = rect.top + radius - window.scrollY;
+
+  // Calculate the angle of the mouse position relative to the center of the circle
+  const angle = Math.atan2(event.clientY - centerY, event.clientX - centerX);
+
+  // Calculate the new position for the dot
+  const x = centerX + radius * Math.cos(angle) - (dot.offsetWidth / 2);
+  const y = centerY + radius * Math.sin(angle) - (dot.offsetHeight / 2);
+
+  // Update the position of the dot
+  dot.style.left = `${x - rect.left}px`;
+  dot.style.top = `${y - rect.top}px`;
+
+  // Update the lines and aspect information
+  drawLines();
+  if (firstSelectedDot && secondSelectedDot) {
+    const angle = calculateAngle(firstSelectedDot, secondSelectedDot);
+    const aspect = getAspectName(angle);
+    displayAspectInfo(aspect);
+  }
+}
+
+// Event listener for mousedown to initiate dragging
+dots.forEach(dot => {
+  dot.addEventListener('mousedown', (event) => {
+    isDragging = true;
+    currentDot = dot;
+    event.preventDefault(); // Prevent default dragging behavior
+  });
+});
+
+// Event listener for mousemove to drag the dot
+document.addEventListener('mousemove', (event) => {
+  if (isDragging) {
+    moveDot(event, currentDot);
+  }
+});
+
+// Event listener for mouseup to end dragging
+document.addEventListener('mouseup', (event) => {
+  if (isDragging) {
+    isDragging = false;
+    currentDot = null;
+  }
+});
+
 // Add click event listener to each dot
 dots.forEach(dot => {
   dot.addEventListener('click', function() {
     updateDotSelection(dot);
   });
 });
+
 // Function to dynamically position dots and redraw lines
 function positionDots() {
   const circleContainer = document.getElementById('circleContainer');
@@ -145,5 +205,6 @@ function positionDots() {
 }
 // Initial positioning of dots
 positionDots();
+
 // Reposition dots on window resize
 window.addEventListener('resize', positionDots);
