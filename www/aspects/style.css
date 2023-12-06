@@ -9,49 +9,49 @@ body {
 
 #infocontainer {
     position: absolute;
-    top: 10vw; /* Adjust as needed */
-    left: 15vw; /* Adjust as needed */
-    min-height: fit-content;
-    border: 1px solid aliceblue; /* Temporary border for visibility */
+    top: 3vh; /* Adjust as needed */
+    left: auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align children to the start of the container (left side) */
-    padding: 10px;
+    flex-direction: row; /* Items in a row */
+    align-items: center; /* Center items vertically */
+    /* border: 1px solid aliceblue; Temporary border for visibility */
+    padding: 10px; /* Add some padding inside the container */
+    white-space: nowrap; /* Prevent the content from wrapping */
 }
 
 #aspectInfo {
     color: whitesmoke;
-    font-size: 30px; /* Adjust as needed */
+    font-size: 1.6em; /* Adjust as needed */
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    margin-bottom: 10px; /* Space between text and icon */
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Align text vertically in case the icon is taller */
 }
 
 #aspectIcon {
     display: none; /* Initially hidden, shown when an aspect is selected */
-    width: 70px; /* Or any other size */
-    height: auto; /* Maintain the aspect ratio of the SVG */
+    width: auto; /* Adjust the width as needed, or use auto */
+    padding: 10px;
+    max-width: 70px;
+    max-height: 50px;
 }
 
-  
 #circleContainer {
-    width: min(50vw, 100vh); /* Smaller of 50% viewport width or 100% viewport height */
-    height: min(50vw, 100vh); /* Same as width to maintain a circle */
-    max-width: 550px;
-    max-height: 550px;
-    min-width: 300px;
-    min-height: 300px;
-    position: relative;
+    width: min(40vw, 100vh); /* Smaller of 50% viewport width or 100% viewport height */
+    height: min(40vw, 100vh); /* Same as width to maintain a circle */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 2px solid whitesmoke;
     border-radius: 50%;
-    padding: 10px;
 }
 
 .centerPoint {
     position: absolute;
     width: 1px;
     height: 1px;
-    background-color: whitesmoke;
+    background-color: black;
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -62,7 +62,7 @@ body {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: yellowgreen;
+    background-color: whitesmoke;
     border-radius: 50%;
     top: 50%;
     left: 50%;

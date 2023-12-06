@@ -258,10 +258,31 @@ function displayAspectInfo(aspect) {
   }
 }
 
+// Click count to determine whether it's the first or second click
+let clickCount = 0;
+
+// Function to handle circle clicks and move dots accordingly
+function handleCircleClick(event) {
+  // Determine which dot to move based on the click count
+  const targetDot = (clickCount % 2 === 0) ? firstSelectedDot : secondSelectedDot;
+
+  if (targetDot) {
+    moveDot(event, targetDot);
+
+    // Update the lines and aspect information
+    updateLinesAndAspect();
+
+    // Increment click count
+    clickCount++;
+  }
+}
 
 // Initial positioning of dots and adding window resize event listener
 function init() {
   positionDots();
+  // Event listener for the circle container
+  document.getElementById('circleContainer').addEventListener('click', handleCircleClick);
+  // Event listener for window resize
   window.addEventListener('resize', positionDots);
 }
 
