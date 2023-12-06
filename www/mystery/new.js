@@ -10,35 +10,33 @@ document.addEventListener("DOMContentLoaded", function() {
     const commonCenterX = canvas.width / 2;
     const commonCenterY = canvas.height / 2;
 
-    // Define multiple spirals with different starting angles and initial angleAcceleration
+    // Define multiple spirals with different starting angles
     const spirals = [
-        { angle: 0, radius: 0, angleVelocity: 0.2, angleAcceleration: 0.001, movingClockwise: true, lastDirectionChangeAngle: 0 },
-        { angle: Math.PI / 6, radius: 0, angleVelocity: 0.2, angleAcceleration: 0.001, movingClockwise: true, lastDirectionChangeAngle: Math.PI / 6 },
-        { angle: Math.PI / 3, radius: 0, angleVelocity: 0.2, angleAcceleration: 0.001, movingClockwise: true, lastDirectionChangeAngle: Math.PI / 3 },
-        // Add more spirals with different starting angles as needed
+        { angle: 0, radius: 0, angleVelocity: 0.01, movingClockwise: true, lastDirectionChangeAngle:  Math.PI / 6, color: 'yellow' },
+        { angle: Math.PI / 6, radius: 0, angleVelocity: 0.05, movingClockwise: true, lastDirectionChangeAngle: Math.PI / 6, color: 'cyan' },
+        { angle: Math.PI / 3, radius: 0, angleVelocity: 0.02, movingClockwise: true, lastDirectionChangeAngle: Math.PI / 3, color: 'orange' },
+        { angle: Math.PI / 2, radius: 1, angleVelocity: 0.02, movingClockwise: true, lastDirectionChangeAngle: Math.PI / 6, color: 'red' },
+        
     ];
 
     function drawSpiral(spiral) {
-        ctx.beginPath(); // Begin a new path for the current spiral
+        // Begin a new path for the spiral
+        ctx.beginPath();
         // Move to the common center to start the spiral
         ctx.moveTo(commonCenterX + spiral.radius * Math.cos(spiral.angle), commonCenterY + spiral.radius * Math.sin(spiral.angle));
 
-        // Determine the angle limit for one-twelfth of a circle
-        const angleLimit = Math.PI / 6;
-
-        // Check the angle change for counter-clockwise movement
-        let angleChange = (spiral.angle - spiral.lastDirectionChangeAngle + 2 * Math.PI) % (2 * Math.PI); // Normalize the angle change to be positive
-        if (!spiral.movingClockwise && angleChange > angleLimit) {
-            spiral.movingClockwise = true; // Force change direction to clockwise
-            spiral.lastDirectionChangeAngle = spiral.angle; // Update the last direction change angle
-        } else if (spiral.movingClockwise && Math.random() < 0.01 && angleChange > angleLimit) {
-            spiral.movingClockwise = false; // Change direction to counter-clockwise
-            spiral.lastDirectionChangeAngle = spiral.angle; // Update the last direction change angle
+        // Check the angle change for counter-clockwise movement and adjust velocity and angle
+        if (!spiral.movingClockwise && (spiral.angle - spiral.lastDirectionChangeAngle) < -Math.PI / 6) { // 1/12th circle for counter-clockwise
+            spiral.movingClockwise = true;
+            spiral.lastDirectionChangeAngle = spiral.angle;
+        } else if (Math.random() < 0.01 && (spiral.angle - spiral.lastDirectionChangeAngle) > Math.PI / 6) { // Random chance to change direction
+            spiral.movingClockwise = false;
+            spiral.lastDirectionChangeAngle = spiral.angle;
         }
 
         // Apply acceleration until reaching target velocity
-        spiral.angleAcceleration = spiral.movingClockwise ? 0.001 : -0.001;
-        spiral.angleVelocity += spiral.angleAcceleration;
+        let angleAcceleration = spiral.movingClockwise ? 0.001 : -0.001;
+        spiral.angleVelocity += angleAcceleration;
         spiral.angle += spiral.angleVelocity;
 
         // Expand radius at a constant rate
@@ -49,9 +47,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Draw a line to the new point
         ctx.lineTo(x, y);
-        ctx.strokeStyle = 'white';
-        ctx.stroke(); // Apply the stroke to the path
+        ctx.strokeStyle = spiral.color;
+        ctx.lineWidth = 0.5; // Adjust this value for thinner or thicker lines
+        ctx.stroke();
     }
 
     function animate() {
-       
+        // Optionally clear the canvas for a single spiral or comment out to keep the trail
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw each spiral
+        spirals.forEach(drawSpiral);
+
+        // Continue the animation loop
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+});
