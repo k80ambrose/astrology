@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.35 73.92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="trineicon">
+    <g>
+      <line class="cls-1" x1="42.68" y1=".25" x2="84.92" y2="73.42"/>
+      <line class="cls-1" x1=".43" y1="73.42" x2="42.68" y2=".25"/>
+      <line class="cls-1" x1=".43" y1="73.42" x2="84.92" y2="73.42"/>
+    </g>
+  </g>
+</svg>

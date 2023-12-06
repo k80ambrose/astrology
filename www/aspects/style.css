@@ -7,19 +7,33 @@ body {
     background-color: black;
 }
 
-#aspectInfo {
-    color: whitesmoke;
-    z-index: 5;
+#infocontainer {
     position: absolute;
-    top: 10px; /* Adjust as needed */
-    left: 10px; /* Adjust as needed */
-    padding: 25px;
-    font-size: 30px; /* Adjust as needed */
-    z-index: 10; /* Ensure it's above other elements */
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
+    top: 10vw; /* Adjust as needed */
+    left: 15vw; /* Adjust as needed */
+    min-height: fit-content;
+    border: 1px solid aliceblue; /* Temporary border for visibility */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align children to the start of the container (left side) */
+    padding: 10px;
 }
 
+#aspectInfo {
+    color: whitesmoke;
+    font-size: 30px; /* Adjust as needed */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    margin-bottom: 10px; /* Space between text and icon */
+}
+
+#aspectIcon {
+    display: none; /* Initially hidden, shown when an aspect is selected */
+    width: 70px; /* Or any other size */
+    height: auto; /* Maintain the aspect ratio of the SVG */
+}
+
+  
 #circleContainer {
     width: min(50vw, 100vh); /* Smaller of 50% viewport width or 100% viewport height */
     height: min(50vw, 100vh); /* Same as width to maintain a circle */
@@ -30,6 +44,7 @@ body {
     position: relative;
     border: 2px solid whitesmoke;
     border-radius: 50%;
+    padding: 10px;
 }
 
 .centerPoint {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.64 43.37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="conjunctionicon">
+    <g>
+      <line class="cls-1" x1="23.67" y1="21.97" x2="45.28" y2=".35"/>
+      <circle class="cls-1" cx="13.37" cy="30" r="12.87"/>
+    </g>
+  </g>
+</svg>

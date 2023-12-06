@@ -1,3 +1,15 @@
+// Variables to keep track of the selected dots and dragging state
+let firstSelectedDot = null;
+let secondSelectedDot = null;
+let isDragging = false;
+let currentDot = null; // The dot currently being dragged
+
+// Select all dots
+const dots = document.querySelectorAll('.aspectDots');
+
+// Select the center point
+const centerPoint = document.getElementById('centerPoint')
+
 // Calculate interior angle
 function calculateAngle(dot1, dot2) {
   
@@ -51,44 +63,25 @@ function getAspectName(angle) {
   }
 }
 
-// display the aspect information
-function displayAspectInfo(aspect) {
-  const aspectInfoDiv = document.getElementById('aspectInfo');
-  if (aspect) {
-      aspectInfoDiv.textContent = `${aspect.name} - ${aspect.degree}°`;
-  } else {
-      aspectInfoDiv.textContent = '';
-  }
-}
-// Modify your updateDotSelection or drawLines function to include aspect calculation
-function updateDotSelection(dot) {
-  if (firstSelectedDot) firstSelectedDot.style.backgroundColor = 'grey';
-  if (secondSelectedDot) secondSelectedDot.style.backgroundColor = 'grey';
-
-  secondSelectedDot = firstSelectedDot;
-  firstSelectedDot = dot;
-
-  if (secondSelectedDot) secondSelectedDot.style.backgroundColor = 'green';
-  firstSelectedDot.style.backgroundColor = 'red';
-
-  drawLines();
-  // Calculate the angle after drawing lines
+// update the lines and aspect information
+function updateLinesAndAspect() {
+  drawLines(); // Always draw lines if dots are set
   if (firstSelectedDot && secondSelectedDot) {
-      const angle = calculateAngle(firstSelectedDot, secondSelectedDot);
-      const aspect = getAspectName(angle);
-      displayAspectInfo(aspect);
+    const angle = calculateAngle(firstSelectedDot, secondSelectedDot);
+    const aspect = getAspectName(angle);
+    displayAspectInfo(aspect);
   }
 }
 
 // draw lines to the center
 function drawLines() {
   const svg = document.querySelector('#circleContainer svg');
-  svg.innerHTML = '';
+  svg.innerHTML = ''; // Clear previous lines
 
+  // Draw lines if both dots are set, regardless of dragging state
   if (firstSelectedDot) {
     drawLine(firstSelectedDot, svg);
   }
-
   if (secondSelectedDot) {
     drawLine(secondSelectedDot, svg);
   }
@@ -110,15 +103,8 @@ function drawLine(dot, svg) {
 
   svg.appendChild(line);
 }
-// Select all the dots and the center point
-const dots = document.querySelectorAll('.aspectDots');
-const centerPoint = document.getElementById('centerPoint')
 
-// Variables to keep track of the selected dots
-let firstSelectedDot = null;
-let secondSelectedDot = null;
-let isDragging = false;
-
+// moveDot
 function moveDot(event, dot) {
   const circleContainer = document.getElementById('circleContainer');
   const rect = circleContainer.getBoundingClientRect();
@@ -146,37 +132,6 @@ function moveDot(event, dot) {
   }
 }
 
-// Event listener for mousedown to initiate dragging
-dots.forEach(dot => {
-  dot.addEventListener('mousedown', (event) => {
-    isDragging = true;
-    currentDot = dot;
-    event.preventDefault(); // Prevent default dragging behavior
-  });
-});
-
-// Event listener for mousemove to drag the dot
-document.addEventListener('mousemove', (event) => {
-  if (isDragging) {
-    moveDot(event, currentDot);
-  }
-});
-
-// Event listener for mouseup to end dragging
-document.addEventListener('mouseup', (event) => {
-  if (isDragging) {
-    isDragging = false;
-    currentDot = null;
-  }
-});
-
-// Add click event listener to each dot
-dots.forEach(dot => {
-  dot.addEventListener('click', function() {
-    updateDotSelection(dot);
-  });
-});
-
 // Function to dynamically position dots and redraw lines
 function positionDots() {
   const circleContainer = document.getElementById('circleContainer');
@@ -203,8 +158,111 @@ function positionDots() {
       drawLine(secondSelectedDot, svg, centerX, centerY);
   }
 }
-// Initial positioning of dots
-positionDots();
 
-// Reposition dots on window resize
-window.addEventListener('resize', positionDots);
+// Event listeners for dragging functionality
+dots.forEach(dot => {
+  dot.addEventListener('mousedown', (event) => {
+    // Set the current dot and start dragging
+    isDragging = true;
+    currentDot = dot;
+    
+    // Consider setting first or second selected dot if not already set
+    if (!firstSelectedDot || !secondSelectedDot) {
+      if (!firstSelectedDot) {
+        firstSelectedDot = dot;
+      } else if (!secondSelectedDot && dot !== firstSelectedDot) {
+        secondSelectedDot = dot;
+      }
+    }
+
+    updateLinesAndAspect(); // Start updating the lines and aspect info
+    event.preventDefault(); // Prevent text selection etc.
+  });
+});
+
+// Move dot and update lines and aspect info as the mouse moves
+document.addEventListener('mousemove', (event) => {
+  if (isDragging && currentDot) {
+    moveDot(event, currentDot);
+    updateLinesAndAspect(); // Continuously update the lines and aspect info
+  }
+});
+
+// Stop dragging
+document.addEventListener('mouseup', (event) => {
+  if (isDragging) {
+    isDragging = false;
+    currentDot = null;
+    updateLinesAndAspect(); // Finalize the lines and aspect info
+  }
+});
+
+// Modify your updateDotSelection or drawLines function to include aspect calculation
+function updateDotSelection(dot) {
+  if (firstSelectedDot) firstSelectedDot.style.backgroundColor = 'grey';
+  if (secondSelectedDot) secondSelectedDot.style.backgroundColor = 'grey';
+
+  secondSelectedDot = firstSelectedDot;
+  firstSelectedDot = dot;
+
+  if (secondSelectedDot) secondSelectedDot.style.backgroundColor = 'green';
+  firstSelectedDot.style.backgroundColor = 'red';
+
+  drawLines();
+  // Calculate the angle after drawing lines
+  if (firstSelectedDot && secondSelectedDot) {
+      const angle = calculateAngle(firstSelectedDot, secondSelectedDot);
+      const aspect = getAspectName(angle);
+      displayAspectInfo(aspect);
+  }
+}
+
+// Start drawing the line when dragging starts
+dots.forEach(dot => {
+  dot.addEventListener('mousedown', (event) => {
+    isDragging = true;
+    currentDot = event.target;
+    drawLines(); // Start drawing the lines
+    event.preventDefault(); // Prevent text selection etc.
+  });
+});
+
+// Finalize the line when dragging stops
+document.addEventListener('mouseup', (event) => {
+  if (isDragging) {
+    isDragging = false;
+    drawLines(); // Draw the lines for the last time
+    currentDot = null;
+  }
+});
+
+// Display the aspect information
+function displayAspectInfo(aspect) {
+  const aspectInfoDiv = document.getElementById('aspectInfo');
+  let aspectIconImg = document.getElementById('aspectIcon'); // Try to get the existing image element
+
+  // If the img element doesn't exist, create it
+  if (!aspectIconImg) {
+    aspectIconImg = document.createElement('img');
+    aspectIconImg.id = 'aspectIcon';
+    aspectInfoDiv.appendChild(aspectIconImg);
+  }
+
+  if (aspect) {
+    aspectInfoDiv.textContent = `${aspect.name} - ${aspect.degree}°`;
+    aspectIconImg.src = `assets/icons/${aspect.name.toLowerCase()}.svg`;
+    aspectIconImg.style.display = 'block';
+  } else {
+    aspectInfoDiv.textContent = '';
+    aspectIconImg.style.display = 'none';
+  }
+}
+
+
+// Initial positioning of dots and adding window resize event listener
+function init() {
+  positionDots();
+  window.addEventListener('resize', positionDots);
+}
+
+init(); // Call the initialization function
